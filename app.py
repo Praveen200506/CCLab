@@ -19,14 +19,16 @@ st.subheader("Login")
 
 username = st.text_input("Username")
 password = st.text_input("Password", type="password")
+email    = st.text_input("Email")
 
 if st.button("Login"):
-    if username and password:
+    if username and password :
         payload = {
             "username": username,
-            "password": password
+            "password": password,
         }
         res = requests.post(f"{API_URL}/login", json=payload)
         st.json(res.json())
     else:
         st.warning("Please enter username and password")
+
