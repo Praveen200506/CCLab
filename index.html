@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FastAPI + HTML (GCP)</title>
+</head>
+<body>
+
+<h2>FastAPI HTML App</h2>
+
+<button onclick="fetch('/hello').then(r=>r.json()).then(d=>output.textContent=JSON.stringify(d,null,2))">
+    Hello
+</button>
+
+<pre id="output"></pre>
+
+<h3>Login</h3>
+<input id="username" placeholder="Username">
+<input id="password" type="password">
+<button onclick="login()">Login</button>
+
+<script>
+function login() {
+    fetch("/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            username: username.value,
+            password: password.value
+        })
+    })
+    .then(r => r.json())
+    .then(d => output.textContent = JSON.stringify(d, null, 2))
+}
+</script>
+
+</body>
+</html>
